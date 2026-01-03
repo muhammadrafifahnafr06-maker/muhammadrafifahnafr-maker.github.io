@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Besar Jaringan Komputer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --deep-navy: #0b1120;
+            --card-bg: #111827;
+            --blue-neon: #2563eb;
+            --white: #ffffff;
+            --slate-400: #94a3b8;
+            --border-color: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--deep-navy);
+            color: var(--white);
+            font-family: "Inter", sans-serif;
+            line-height: 1.6;
+            padding: 2rem;
+            min-height: 100vh;
+        }
+
+        /* LAYOUT SYSTEM */
+        .page-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        header h1 {
+            font-family: "Poppins", sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--blue-neon));
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 0.35fr 0.65fr;
+            gap: 1.5rem;
+        }
+
+        /* CARD STYLES */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 1.25rem;
+            padding: 2rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(37, 99, 235, 0.5);
+        }
+
+        /* LEFT COLUMN */
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .identity-card {
+            text-align: center;
+        }
+
+        .profile-container {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--blue-neon);
+            position: relative;
+            z-index: 2;
+        }
+
+        .profile-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--blue-neon);
+            border-radius: 50%;
+            filter: blur(25px);
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .badge-kelas {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--blue-neon);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            padding: 0.25rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 0.75rem;
+            display: inline-block;
+        }
+
+        /* DOCUMENTATION */
+        .doc-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .doc-card h3 {
+            font-family: "Poppins", sans-serif;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-download {
+            margin-top: auto;
+            background-color: var(--blue-neon);
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            transition: 0.2s ease;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+        }
+
+        /* MATERIAL CARD (RIGHT) */
+        .material-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .osi-badge {
+            background: #1e293b;
+            padding: 0.2rem 0.75rem;
+            border-radius: 0.4rem;
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: var(--slate-400);
+        }
+
+        .device-preview {
+            width: 100%;
+            height: 300px;
+            border-radius: 1rem;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .device-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .function-desc h4 {
+            color: var(--blue-neon);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sub-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .sub-card {
+            background: rgba(15, 23, 42, 0.5);
+            border: 1px solid var(--border-color);
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+        }
+
+        .sub-card h5 {
+            color: var(--blue-neon);
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .sub-card p {
+            font-size: 0.8rem;
+            color: var(--slate-400);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .left-column { order: 2; }
+            .material-card { order: 1; }
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 1rem; }
+            header h1 { font-size: 1.75rem; }
+            .sub-grid { grid-template-columns: 1fr; }
+            .device-preview { height: 200px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <header>
+            <h1>Tugas Besar Jaringan Komputer: Hosting Website</h1>
+        </header>
+
+        <main class="main-grid">
+            <aside class="left-col">
+                <div class="left-column">
+                    <section class="card identity-card">
+                        <div class="profile-container">
+                            <div class="profil"></div>
+                            <img src="fotoprofil.jpg" alt="Foto Profil Muhammad Rafif Ahnaf R" class="profile-img" />
+                        </div>
+                        <h2>Muhammad Rafif Ahnaf R</h2>
+                        <p style="color: var(--blue-neon); font-family: monospace; font-weight: 600;">607012500100</p>
+                        <span class="badge-kelas">Kelas D3SI 49-02</span>
+                    </section>
+
+                    <section class="card doc-card">
+                        <h3>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--blue-neon)">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                            Dokumentasi Tutorial Hosting
+                        </h3>
+                        <p style="font-size: 0.9rem; color: var(--slate-400); margin-bottom: 1.5rem;">
+                            file ini berisi laporan langkah-langkah lengkap untuk melakukan hosting website, mulai dari persiapan domain, pengaturan server, hingga publikasi konten secara online.
+                        </p>
+                        <a href="tutorial-hosting.pdf" download class="btn-download">Download Tutorial PDF</a>
+                    </section>
+                </div>
+            </aside>
+
+            <section class="card material-card">
+                <div class="material-header">
+                    <h2>Network Switch</h2>
+                    <span class="osi-badge">OSI LAYER 2</span>
+                </div>
+
+                <div class="device-preview">
+                    <img src="switch.jpg" alt="Switch Jaringan" />
+                </div>
+
+                <div class="function-desc">
+                    <h4>Fungsi Perangkat</h4>
+                    <p style="font-size: 1.1rem; color: var(--slate-400);">
+                        Switch adalah perangkat jaringan yang bekerja pada Layer 2 (Data Link). Fungsi utamanya adalah menghubungkan perangkat dalam LAN dan menggunakan <strong>MAC Address</strong> untuk meneruskan data secara spesifik ke port tujuan.
+                    </p>
+                </div>
+
+                <div class="sub-grid">
+                    <div class="sub-card">
+                        <h5>UNMANAGED SWITCH</h5>
+                        <p>Perangkat standar siap pakai tanpa konfigurasi. Cocok untuk kebutuhan jaringan skala kecil/rumahan.</p>
+                    </div>
+                    <div class="sub-card">
+                        <h5>MANAGED SWITCH</h5>
+                        <p>Mendukung fitur lanjutan seperti VLAN, QoS, dan monitoring keamanan untuk kontrol trafik yang presisi.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
